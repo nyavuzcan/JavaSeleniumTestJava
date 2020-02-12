@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Main {
                 ilStringList.add(webElement.getAttribute("data-label"));
             }
             for(WebElement webElementİl : webElementList){
+
             webElementİl.click();
                 Thread.sleep(2000);
                web.findElement(By.linkText("İlçe")).click();
@@ -42,10 +44,14 @@ public class Main {
                     web.findElement(By.linkText("Mahalle")).click();
                     Thread.sleep(2000);
                     List<WebElement> webElementMahallelist = web.findElements(By.cssSelector("li [data-level='district']"));
-                    break;
+                    web.findElement(By.className("address-overlay")).click();
+                    web.findElement(By.cssSelector("dd > ul >li[data-address='town']")).click();
+                    continue;
                 }
                 web.findElement(By.className("address-overlay")).click();
-                web.findElement(By.linkText(webElementİl.findElement(By.tagName("a")).getText())).click();
+                web.findElement(By.cssSelector("dd > ul >li[data-address='city']")).click();
+
+
 
             }
         try {
