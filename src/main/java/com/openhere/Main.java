@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Main {
 
@@ -38,7 +39,9 @@ public class Main {
                web.findElement(By.linkText("İlçe")).click();
                 Thread.sleep(2000);
                 List<WebElement> webElementIlcelist= web.findElements(By.cssSelector("li [data-level='town']"));
+              //  List<WebElement> webElements =new ArrayList<WebElement>();
                 for (int i =1 ; i<=webElementIlcelist.size(); i++){
+                  //  webElements.add(webElementIlcelist.get(i));
                     webElementIlcelist.get(i).click();
                     web.findElement(By.className("address-overlay")).click();
                     web.findElement(By.linkText("Mahalle")).click();
@@ -46,6 +49,9 @@ public class Main {
                     List<WebElement> webElementMahallelist = web.findElements(By.cssSelector("li [data-level='district']"));
                     web.findElement(By.className("address-overlay")).click();
                     web.findElement(By.cssSelector("dd > ul >li[data-address='town']")).click();
+                    webElementIlcelist.get(i).click();
+
+
                     continue;
                 }
                 web.findElement(By.className("address-overlay")).click();
