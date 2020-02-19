@@ -1,5 +1,7 @@
 package com.openhere;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,6 +17,11 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
+/*      MongoClient mongoClient = new MongoClient(
+          new MongoClientURI(
+              "mongodb+srv://nyavuzcan:nevzat1234@cluster0-qmh6q.gcp.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Community&retryWrites=true&ssl=true"));
+mongoClient.co*/
+
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         WebDriver web =new ChromeDriver();
         String baseUrl = "https://www.sahibinden.com/satilik-daire";
@@ -38,7 +45,8 @@ public class Main {
                 Thread.sleep(2000);
                 List<WebElement> webElementIlcelist= web.findElements(By.cssSelector("li [data-level='town']"));
               //  List<WebElement> webElements =new ArrayList<WebElement>();
-                for (int i =1 ; i<=webElementIlcelist.size(); i++){
+              ArrayList<String> linkler=new ArrayList<String>();
+                for (int i =1 ; i<=webElementIlcelist.size()+1; i++){
                   JavascriptExecutor js = (JavascriptExecutor) web;
                   WebElement element =web.findElement(By.xpath("//*[@id=\"searchResultLeft-address\"]/dl/dd/ul/li[2]/div/div[3]/div/div[1]"));
                   js.executeScript("arguments[0].setAttribute('style', 'padding: 0px; top: -"+i*18+"px; left: 0px; width: 209px;')",element);
@@ -52,7 +60,14 @@ public class Main {
                     web.findElement(By.linkText("Mahalle")).click();
                     Thread.sleep(1500);
                     List<WebElement> webElementMahallelist = web.findElements(By.cssSelector("li [data-level='district']"));
-                    web.findElement(By.className("address-overlay")).click();
+
+                  for(int m=1; m<webElementMahallelist.size(); m++){
+                   linkler.add("https://www.sahibinden.com/satilik-daire/istanbul-"+webElementIlcelist.get(i).getAttribute("data-label")+"-"+
+
+                       webElementMahallelist.get(m).getAttribute("data-label"  ) );
+                  }
+
+                  web.findElement(By.className("address-overlay")).click();
                     Thread.sleep(1500);
                     web.findElement(By.cssSelector("dd > ul >li[data-address='town']")).click();
                     Thread.sleep(1500);
@@ -73,4 +88,6 @@ public class Main {
             }
 
     }
+
+
 }
