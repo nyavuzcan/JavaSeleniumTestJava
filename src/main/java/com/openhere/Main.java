@@ -17,10 +17,7 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-/*      MongoClient mongoClient = new MongoClient(
-          new MongoClientURI(
-              "mongodb+srv://nyavuzcan:nevzat1234@cluster0-qmh6q.gcp.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Community&retryWrites=true&ssl=true"));
-mongoClient.co*/
+
 
         System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         WebDriver web =new ChromeDriver();
