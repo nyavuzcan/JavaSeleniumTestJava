@@ -12,17 +12,62 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 
 public class Main {
 
+
     public static void main(String[] args) throws IOException, InterruptedException {
+      String baseUrl = "https://www.sahibinden.com/satilik-daire";
+      String baseUrl2 = "https://www.sahibinden.com/kis-sporlari";
+      String baseUrl3 = "https://www.sahibinden.com/kizak?pagingOffset=40";
+      String baseUrl4 = "https://www.sahibinden.com/emlak-turistik-tesis-kiralik";
+      String baseUrl5 = "https://www.sahibinden.com/kiralik-butik-otel";
+      String baseUrl6 = "https://www.sahibinden.com/kategori/emlak-turistik-tesis";
+      String baseUrl7 = "https://www.sahibinden.com/arama/detayli";
+      String baseUrl8 = "https://www.sahibinden.com/kategori/cep-telefonu";
+      String baseUrl9 = "https://www.sahibinden.com/kategori/spor";
+      String baseUrl10 = "https://www.sahibinden.com/devren-satilik-konut?pagingOffset=180";
+      String baseUrl11 = "https://www.sahibinden.com/devren-satilik-konut";
+      String baseUrl12 = "https://www.sahibinden.com/kategori/emlak-konut";
+
+      ArrayList<String> linkler= new ArrayList<String>();
 /*      MongoClient mongoClient = new MongoClient(
           new MongoClientURI(
               "mongodb+srv://nyavuzcan:nevzat1234@cluster0-qmh6q.gcp.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Community&retryWrites=true&ssl=true"));
 mongoClient.co*/
+      linkler.add(baseUrl);
+      linkler.add(baseUrl);
+      linkler.add(baseUrl2);
+      linkler.add(baseUrl3);
+      linkler.add(baseUrl4);
+      linkler.add(baseUrl5);
+      linkler.add(baseUrl6);
+      linkler.add(baseUrl7);
+      linkler.add(baseUrl8);
+      linkler.add(baseUrl9);
+      linkler.add(baseUrl10);
+      linkler.add(baseUrl11);
+      linkler.add(baseUrl12);
 
-        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+      System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+      WebDriver web =new ChromeDriver();
+
+    while (true){
+      web.manage().deleteAllCookies();
+
+      Random r=new Random(); //random sınıfı
+      int a=r.nextInt(13);
+
+      web.get(linkler.get(a));
+      Random rx=new Random(); //random sınıfı
+      int ax=rx.nextInt(15)*1000;
+
+      Thread.sleep(ax);
+    }
+
+       /* System.setProperty("webdriver.chrome.driver","chromedriver.exe");
         WebDriver web =new ChromeDriver();
         String baseUrl = "https://www.sahibinden.com/satilik-daire";
         web.get(baseUrl);
@@ -86,7 +131,7 @@ mongoClient.co*/
 
 
             }
-
+*/
     }
 
 
